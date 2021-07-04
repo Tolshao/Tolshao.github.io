@@ -431,14 +431,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -452,6 +452,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
         
 
         
@@ -483,17 +486,18 @@
 </li>
 <li><p>brew<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/67db55780450">brew安装</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6ea6e19c060d">mac brew install 慢解决办法</a></p>
 </li>
-<li><p>mac10.15软件安装提示已损坏解决办法<br>终端执行<br><code>sudo spctl --master-disable
-sudo xattr -r -d com.apple.quarantine /Applications/Sketch.app/</code></p>
+<li><p>mac10.15软件安装提示已损坏解决办法<br>终端执行</p>
+<pre class="line-numbers language-sudo" data-language="sudo"><code class="language-sudo">sudo xattr -r -d com.apple.quarantine &#x2F;Applications&#x2F;Sketch.app&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
-<li><p>编辑环境变量文件文件<br>```cd ~/<br>vim .bash_profile</p>
-<pre><code>粘贴入下列代码
-</code></pre><h1 id="proxy-list"><a href="#proxy-list" class="headerlink" title="proxy list"></a>proxy list</h1><p>alias proxy=’export all_proxy=socks5://127.0.0.1:1086’<br>alias unproxy=’unset all_proxy’</p>
-<pre><code>control + c 键入wq保存退出 
-保存隐藏文件到环境变量
-```cd ~/
-source .bash_profile
-</code></pre></li>
+<li><p>编辑环境变量文件文件</p>
+<pre class="line-numbers language-cd" data-language="cd"><code class="language-cd">vim .bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>粘贴入下列代码</p>
+<pre class="line-numbers language-none"><code class="language-none"># proxy list
+alias proxy&#x3D;&#39;export all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0.1:1086&#39;
+alias unproxy&#x3D;&#39;unset all_proxy&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>control + c 键入wq保存退出<br>保存隐藏文件到环境变量</p>
+<pre class="line-numbers language-cd" data-language="cd"><code class="language-cd">source .bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
 </ul>
 <ul>
 <li><p>系统环境变量<br>修改<code>~/.bash_profile</code></p>
@@ -521,20 +525,19 @@ source .bash_profile
 </ol>
 </li>
 </ul>
-<pre><code class="lang-bash">#!/usr/bin/expect
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/usr/bin/expect</span>
 
-set ip [lindex $argv 0]
-set user [lindex $argv 1]
-set password [lindex $argv 2]
+<span class="token builtin class-name">set</span> <span class="token function">ip</span> <span class="token punctuation">[</span>lindex <span class="token variable">$argv</span> <span class="token number">0</span><span class="token punctuation">]</span>
+<span class="token builtin class-name">set</span> user <span class="token punctuation">[</span>lindex <span class="token variable">$argv</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token builtin class-name">set</span> password <span class="token punctuation">[</span>lindex <span class="token variable">$argv</span> <span class="token number">2</span><span class="token punctuation">]</span>
 
-set timeout 10
-spawn ssh $user@$ip
-expect &amp;#123;
-        &quot;*yes/no&quot; &amp;#123;send &quot;yes\r&quot;;exp_continue&amp;#125;
-        &quot;*password:&quot; &amp;#123;send &quot;$password\r&quot;&amp;#125;
-&amp;#125;
-interact
-</code></pre>
+<span class="token builtin class-name">set</span> <span class="token function">timeout</span> <span class="token number">10</span>
+spawn <span class="token function">ssh</span> <span class="token variable">$user</span>@<span class="token variable">$ip</span>
+<span class="token function">expect</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"*yes/no"</span> <span class="token punctuation">&#123;</span>send <span class="token string">"yes<span class="token entity" title="\r">\r</span>"</span><span class="token punctuation">;</span>exp_continue<span class="token punctuation">&#125;</span>
+        <span class="token string">"*password:"</span> <span class="token punctuation">&#123;</span>send <span class="token string">"<span class="token variable">$password</span><span class="token entity" title="\r">\r</span>"</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+interact<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上述三个argv是变量传参的接口</p>
 <ul>
 <li><ol>
@@ -570,19 +573,19 @@ open -e .bash_profile</code><br>这样会弹出一个“.bash_profile”文件.<
 <h2 id="Terminal-commands"><a href="#Terminal-commands" class="headerlink" title="Terminal commands"></a>Terminal commands</h2><p>图片本地压缩工具：<code>imageoptim aaa.jpg</code><br>开源软件安装：<code>brew install example</code><br>python库安装<code>pip3 install example</code><br>最后更新配置的环境变量<code>source .bash_profile</code></p>
 <p>同理：http代理设置如下：</p>
 <ul>
-<li>让终端走http代理——应用层，不改变系统层<pre><code>export http_proxy=&quot;http://localhost:1087&quot;
-export https_proxy=&quot;http://localhost:1087&quot;
-</code></pre></li>
+<li>让终端走http代理——应用层，不改变系统层<pre class="line-numbers language-none"><code class="language-none">export http_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:1087&quot;
+export https_proxy&#x3D;&quot;http:&#x2F;&#x2F;localhost:1087&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">brew 源替换清华</a><br>git 太慢的解决办法</p>
 <ol>
 <li>在<a target="_blank" rel="noopener" href="https://www.ipaddress.com/查询网址对应ip">https://www.ipaddress.com/查询网址对应ip</a></li>
 <li>手动更改hosts</li>
 </ol>
-<pre><code>199.232.68.133 raw.githubusercontent.com
+<pre class="line-numbers language-none"><code class="language-none">199.232.68.133 raw.githubusercontent.com
 199.232.69.194 github.global.ssl.fastly.net
-140.82.114.4 github.com
-</code></pre><ol>
+140.82.114.4 github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ol>
 <li><p>刷新dns缓存<br><code>sudo dscacheutil -flushcache</code></p>
 </li>
 <li><p>git 代理设置<br>手动操作</p>
@@ -591,56 +594,56 @@ export https_proxy=&quot;http://localhost:1087&quot;
 <ul>
 <li>设置</li>
 </ul>
-<pre><code>git config --global http.proxy socks5://127.0.0.1:1086;
-git config --global https.proxy socks5://127.0.0.1:1086
-</code></pre><ul>
+<pre class="line-numbers language-none"><code class="language-none">git config --global http.proxy socks5:&#x2F;&#x2F;127.0.0.1:1086;
+git config --global https.proxy socks5:&#x2F;&#x2F;127.0.0.1:1086<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
 <li>卸载</li>
 </ul>
-<pre><code>git config --global --unset http.proxy
-git config --global --unset https.proxy
-</code></pre><ul>
+<pre class="line-numbers language-none"><code class="language-none">git config --global --unset http.proxy
+git config --global --unset https.proxy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
 <li>写入命令行vim添加：</li>
 </ul>
-<pre><code>alias git_proxy=&#39;git config --global http.proxy socks5://127.0.0.1:1086; git config --global https.proxy socks5://127.0.0.1:1086&#39;
-alias ungit_proxy=&#39;git config --global --unset http.proxy; git config --global --unset https.proxy&#39;
-</code></pre><p>查看是否添加上：<br><code>cat ~/.gitconfig</code></p>
+<pre class="line-numbers language-none"><code class="language-none">alias git_proxy&#x3D;&#39;git config --global http.proxy socks5:&#x2F;&#x2F;127.0.0.1:1086; git config --global https.proxy socks5:&#x2F;&#x2F;127.0.0.1:1086&#39;
+alias ungit_proxy&#x3D;&#39;git config --global --unset http.proxy; git config --global --unset https.proxy&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>查看是否添加上：<br><code>cat ~/.gitconfig</code></p>
 <ul>
 <li>brew源更改（采用阿里云）</li>
 </ul>
-<pre><code>cd &quot;$(brew --repo)&quot;
+<pre class="line-numbers language-none"><code class="language-none">cd &quot;$(brew --repo)&quot;
 # 查看远程仓库
 git remote -v
 # 删除远程
 git remote rm origin 
 # 添加阿里源 ：
-git remote add origin https://mirrors.aliyun.com/homebrew/brew.git
+git remote add origin https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;homebrew&#x2F;brew.git
 # 切换成阿里源: 
-git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
-</code></pre><ul>
+git remote set-url origin https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;homebrew&#x2F;brew.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>brew-core源更改</li>
 </ul>
-<pre><code>cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;
+<pre class="line-numbers language-none"><code class="language-none">cd &quot;$(brew --repo)&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-core&quot;
 # 查看远程仓库 
 git remote -v 
 # 删除远程： 
 git remote rm origin 
 # 添加阿里源 ：
-git remote add origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
+git remote add origin https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;homebrew&#x2F;homebrew-core.git
 # 切换成阿里源： 
-git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
-</code></pre><ul>
+git remote set-url origin https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;homebrew&#x2F;homebrew-core.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>bottle源更改</li>
 </ul>
-<pre><code>echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles&#39; &gt;&gt; ~/.bash_profile
-source ~/.bash_profile
-</code></pre><ul>
+<pre class="line-numbers language-none"><code class="language-none">echo &#39;export HOMEBREW_BOTTLE_DOMAIN&#x3D;https:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;homebrew&#x2F;homebrew-bottles&#39; &gt;&gt; ~&#x2F;.bash_profile
+source ~&#x2F;.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
 <li>cask源更改（中科大源）</li>
 </ul>
-<pre><code>cd &quot;$(brew --repo)&quot;/Library/Taps/homebrew/homebrew-cask
+<pre class="line-numbers language-none"><code class="language-none">cd &quot;$(brew --repo)&quot;&#x2F;Library&#x2F;Taps&#x2F;homebrew&#x2F;homebrew-cask
 git remote rm origin 
-git remote add origin https://mirrors.ustc.edu.cn/homebrew-cask.git
-git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
-</code></pre><ul>
+git remote add origin https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-cask.git
+git remote set-url origin https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;homebrew-cask.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>环境变量设置，快捷命令设置<br>自己在 ~/.bash_profile 中配置环境变量, 可是每次重启终端后配置的不生效.需要重新执行<br><code>$source ~/.bash_profile</code><br>发现zsh加载的是 ~/.zshrc文件，而 ‘.zshrc’ 文件中并没有定义任务环境变量。<br>解决办法</li>
 </ul>
 <p>在~/.zshrc文件最后，增加一行：<br><code>source ~/.bash_profile</code></p>
@@ -653,11 +656,10 @@ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
 <li>显示隐藏文件：shift + Command + . </li>
 </ul>
 <h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><h3 id="ntfs原生挂载"><a href="#ntfs原生挂载" class="headerlink" title="ntfs原生挂载"></a>ntfs原生挂载</h3><p>terminal：<br><code>sudo nano /etc/fstab</code><br><code>LABEL=Elements\040SE none ntfs rw,auto,nobrowse</code><br>\040代表空格<br>ctrl + x 保存，y确定</p>
-<h3 id="外接硬盘无法挂载"><a href="#外接硬盘无法挂载" class="headerlink" title="外接硬盘无法挂载"></a>外接硬盘无法挂载</h3><p>需要先进行检查修复</p>
-<pre><code>diskutil list
-diskutil repairVolume /dev/disk4
-diskutil mount /dev/disk4
-</code></pre><h1 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h1><h2 id="Latex"><a href="#Latex" class="headerlink" title="Latex"></a>Latex</h2><ol>
+<h3 id="外接硬盘无法挂载"><a href="#外接硬盘无法挂载" class="headerlink" title="外接硬盘无法挂载"></a>外接硬盘无法挂载</h3><p>需要先进行检查修复<br><pre class="line-numbers language-none"><code class="language-none">diskutil list
+diskutil repairVolume &#x2F;dev&#x2F;disk4
+diskutil mount &#x2F;dev&#x2F;disk4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></p>
+<h1 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h1><h2 id="Latex"><a href="#Latex" class="headerlink" title="Latex"></a>Latex</h2><ol>
 <li>文献不引用编译会报错，修正方法，clean过程文件，重新编译</li>
 <li><a target="_blank" rel="noopener" href="http://www.latexstudio.net/archives/12260.html">mac vs code 改编译器</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.latexstudio.net/archives/12321.html">mac vs_code skim_pdf_viewer设置</a></li>
@@ -1506,16 +1508,16 @@ adb -d shell sh /data/data/me.piebridge.brevent/brevent.sh</code></p>
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1546,7 +1548,7 @@ adb -d shell sh /data/data/me.piebridge.brevent/brevent.sh</code></p>
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

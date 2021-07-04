@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
@@ -444,6 +444,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
         
 
         
@@ -490,77 +493,46 @@
 <ul>
 <li>环境Env</li>
 </ul>
-<pre><code class="lang-python">class Environment():
-    self.states  # 所有可能的状态集合
-    self.agent_cur_state    # 记录个体当前的状态
-    self.observation_space  # 个体的观测空间
-    self.action_space  # 个体的行为空间
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Environment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>states  <span class="token comment"># 所有可能的状态集合</span>
+    self<span class="token punctuation">.</span>agent_cur_state    <span class="token comment"># 记录个体当前的状态</span>
+    self<span class="token punctuation">.</span>observation_space  <span class="token comment"># 个体的观测空间</span>
+    self<span class="token punctuation">.</span>action_space  <span class="token comment"># 个体的行为空间</span>
 
-    def reward(self) -&gt; reward # 根据状态确定个体的即时奖励
-    def dynamics(self, action) -&gt; None # 根据当前状态和个体的行为确定个体的新状态
-    def is_episode_end(self) -&gt; Bool # 判断是否一个Episode结束
-def obs_for_agent() -&gt; obs  # 环境把个体当前状态做一定变换，作为个体的观测
-</code></pre>
+    <span class="token keyword">def</span> <span class="token function">reward</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> reward <span class="token comment"># 根据状态确定个体的即时奖励</span>
+    <span class="token keyword">def</span> <span class="token function">dynamics</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span> <span class="token comment"># 根据当前状态和个体的行为确定个体的新状态</span>
+    <span class="token keyword">def</span> <span class="token function">is_episode_end</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Bool <span class="token comment"># 判断是否一个Episode结束</span>
+<span class="token keyword">def</span> <span class="token function">obs_for_agent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> obs  <span class="token comment"># 环境把个体当前状态做一定变换，作为个体的观测</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>代理Agent</li>
 </ul>
-<pre><code class="lang-python">class Agent(env: Environment):
-    self.env = env  # 个体依附于一个环境存在
-    self.obs # 个体的观测
-    self.reward # 个体获得的即时奖励
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Agent</span><span class="token punctuation">(</span>env<span class="token punctuation">:</span> Environment<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>env <span class="token operator">=</span> env  <span class="token comment"># 个体依附于一个环境存在</span>
+    self<span class="token punctuation">.</span>obs <span class="token comment"># 个体的观测</span>
+    self<span class="token punctuation">.</span>reward <span class="token comment"># 个体获得的即时奖励</span>
 
-    def performPolicy(self, obs) -&gt; action # 个体执行一个策略产生一个行为
+    <span class="token keyword">def</span> <span class="token function">performPolicy</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> obs<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> action <span class="token comment"># 个体执行一个策略产生一个行为</span>
 
-    def performAction(self, action) -&gt; None  # 个体与环境交互，执行行为
-        action = self.performPolicy(self.obs)
-        self.env.dynamics(action)
+    <span class="token keyword">def</span> <span class="token function">performAction</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> action<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token boolean">None</span>  <span class="token comment"># 个体与环境交互，执行行为</span>
+        action <span class="token operator">=</span> self<span class="token punctuation">.</span>performPolicy<span class="token punctuation">(</span>self<span class="token punctuation">.</span>obs<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>env<span class="token punctuation">.</span>dynamics<span class="token punctuation">(</span>action<span class="token punctuation">)</span>
 
-    def observe(self) -&gt; next_obs, reward # 个体得到从环境反馈来的观测和奖励
-        self.obs = self.env.obs_for_agent()
-        self.reward = self.env.reward()
-</code></pre>
-<h2 id="gym调用"><a href="#gym调用" class="headerlink" title="gym调用"></a>gym调用</h2><p>gym的调用框架</p>
-<pre><code class="lang-python">env = gym.make(&#39;x&#39;)
-observation = env.reset()
-for i in range(time_steps):
-    env.render() # 调用第三方库刷动画写这里
-    action = policy(observation)
-    observation, reward, done, info = env.step(action)
-    if done:
+    <span class="token keyword">def</span> <span class="token function">observe</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> next_obs<span class="token punctuation">,</span> reward <span class="token comment"># 个体得到从环境反馈来的观测和奖励</span>
+        self<span class="token punctuation">.</span>obs <span class="token operator">=</span> self<span class="token punctuation">.</span>env<span class="token punctuation">.</span>obs_for_agent<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>reward <span class="token operator">=</span> self<span class="token punctuation">.</span>env<span class="token punctuation">.</span>reward<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="gym调用"><a href="#gym调用" class="headerlink" title="gym调用"></a>gym调用</h2><p>gym的调用框架<br><pre class="line-numbers language-python" data-language="python"><code class="language-python">env <span class="token operator">=</span> gym<span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">)</span>
+observation <span class="token operator">=</span> env<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>time_steps<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    env<span class="token punctuation">.</span>render<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 调用第三方库刷动画写这里</span>
+    action <span class="token operator">=</span> policy<span class="token punctuation">(</span>observation<span class="token punctuation">)</span>
+    observation<span class="token punctuation">,</span> reward<span class="token punctuation">,</span> done<span class="token punctuation">,</span> info <span class="token operator">=</span> env<span class="token punctuation">.</span>step<span class="token punctuation">(</span>action<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> done<span class="token punctuation">:</span>
         ……
-        break
-env.close()
-</code></pre>
+        <span class="token keyword">break</span>
+env<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img src="/img/15991043562505.jpg" alt=""></p>
-<p>例程是一个简单的策略，杆左斜车左移，右斜则右移。</p>
-<pre><code class="lang-python">import gym
-import numpy as np
-env = gym.make(&#39;CartPole-v0&#39;)
-t_all = [ ]
-action_bef = 0
-for i_episode in range(5):
-    observation = env.reset()
-    for t in range(100):
-        env.render()
-        cp, cv, pa, pv = observation
-        if abs(pa)&lt;= 0.1:
-            action = 1 -action_bef
-        elif pa &gt;= 0:
-            action = 1
-        elif pa &lt;= 0:
-            action = 0
-        observation, reward, done, info = env.step(action)
-        action_bef = action
-        if done:
-            # print(&quot;Episode finished after &amp;#123;&amp;#125; timesteps&quot;.format(t+1))
-            t_all.append(t)
-            break
-        if t ==99:
-            t_all.append(0)
-env.close()
-print(t_all)
-print(np.mean(t_all))
-</code></pre>
+<p>例程是一个简单的策略，杆左斜车左移，右斜则右移。<br>&lt;!—hexoPostRenderEscape:<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gym<br><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np<br>env <span class="token operator">=</span> gym<span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token string">‘CartPole-v0’</span><span class="token punctuation">)</span><br>t_all <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">]</span><br>action_bef <span class="token operator">=</span> <span class="token number">0</span><br><span class="token keyword">for</span> i_episode <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br>    observation <span class="token operator">=</span> env<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span><br>    <span class="token keyword">for</span> t <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br>        env<span class="token punctuation">.</span>render<span class="token punctuation">(</span><span class="token punctuation">)</span><br>        cp<span class="token punctuation">,</span> cv<span class="token punctuation">,</span> pa<span class="token punctuation">,</span> pv <span class="token operator">=</span> observation<br>        <span class="token keyword">if</span> <span class="token builtin">abs</span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token operator">&lt;=</span> <span class="token number">0.1</span><span class="token punctuation">:</span><br>            action <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">-</span>action_bef<br>        <span class="token keyword">elif</span> pa <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">:</span><br>            action <span class="token operator">=</span> <span class="token number">1</span><br>        <span class="token keyword">elif</span> pa <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span><br>            action <span class="token operator">=</span> <span class="token number">0</span><br>        observation<span class="token punctuation">,</span> reward<span class="token punctuation">,</span> done<span class="token punctuation">,</span> info <span class="token operator">=</span> env<span class="token punctuation">.</span>step<span class="token punctuation">(</span>action<span class="token punctuation">)</span><br>        action_bef <span class="token operator">=</span> action<br>        <span class="token keyword">if</span> done<span class="token punctuation">:</span><br>            <span class="token comment"># print(“Episode finished after &#123;&#125; timesteps”.format(t+1))</span><br>            t_all<span class="token punctuation">.</span>append<span class="token punctuation">(</span>t<span class="token punctuation">)</span><br>            <span class="token keyword">break</span><br>        <span class="token keyword">if</span> t <span class="token operator">==</span><span class="token number">99</span><span class="token punctuation">:</span><br>            t_all<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><br>env<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><br><span class="token keyword">print</span><span class="token punctuation">(</span>t_all<span class="token punctuation">)</span><br><span class="token keyword">print</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>t_all<span class="token punctuation">)</span><span class="token punctuation">)</span></p>
+<p><span aria-hidden="true" class="line-numbers-rows"><span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;<span></span><span>&lt;/span&gt;</span>&lt;/code&gt;&lt;/pre&gt;:hexoPostRenderEscape—&gt;</p>
 <h2 id="gym的搭建"><a href="#gym的搭建" class="headerlink" title="gym的搭建"></a>gym的搭建</h2><h3 id="函数接口"><a href="#函数接口" class="headerlink" title="函数接口"></a>函数接口</h3><p>一个完整的gym环境包括以下函数：</p>
 <ul>
 <li>class Cartpoleenv(gym.env)<ul>
@@ -581,44 +553,42 @@ print(np.mean(t_all))
 <li><p>action和observation空间定义</p>
 </li>
 </ul>
-<p>例子：<br><code>Discrete</code>: 0,1,2三个离散值</p>
-<pre><code class="lang-python">low = np.array([min_0,min_1],dtype=np.float32)
-high = np.array([max_0,max_1],dtype=np.float32)
-</code></pre>
-<pre><code>self.action_space = spaces.Discrete(3)
-self.observation_space = spaces.Box(
-self.low, self.high, dtype=np.float32)
-</code></pre><h2 id="agent-的构建"><a href="#agent-的构建" class="headerlink" title="agent 的构建"></a>agent 的构建</h2><p>agent与环境进行交互，输入是env的输出（observation），输出是env的输入（action）</p>
-<pre><code>class Agent():
+<p>例子：<br><code>Discrete</code>: 0,1,2三个离散值<br><pre class="line-numbers language-python" data-language="python"><code class="language-python">low <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>min_0<span class="token punctuation">,</span>min_1<span class="token punctuation">]</span><span class="token punctuation">,</span>dtype<span class="token operator">=</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+high <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>max_0<span class="token punctuation">,</span>max_1<span class="token punctuation">]</span><span class="token punctuation">,</span>dtype<span class="token operator">=</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></p>
+<pre class="line-numbers language-none"><code class="language-none">self.action_space &#x3D; spaces.Discrete(3)
+self.observation_space &#x3D; spaces.Box(
+self.low, self.high, dtype&#x3D;np.float32)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="agent-的构建"><a href="#agent-的构建" class="headerlink" title="agent 的构建"></a>agent 的构建</h2><p>agent与环境进行交互，输入是env的输出（observation），输出是env的输入（action）</p>
+<pre class="line-numbers language-none"><code class="language-none">class Agent():
     def __ init__(self,action_space):
-        self.action_space = action_space
+        self.action_space &#x3D; action_space
     def act(self, observation, reward, done):
-        return action
-</code></pre><h2 id="agent和env交互逻辑如下："><a href="#agent和env交互逻辑如下：" class="headerlink" title="agent和env交互逻辑如下："></a>agent和env交互逻辑如下：</h2><pre><code>nb_episodes = xx
-nb_steps = xx
-reward = 0
-done = False        
+        return action<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="agent和env交互逻辑如下："><a href="#agent和env交互逻辑如下：" class="headerlink" title="agent和env交互逻辑如下："></a>agent和env交互逻辑如下：</h2><pre class="line-numbers language-none"><code class="language-none">nb_episodes &#x3D; xx
+nb_steps &#x3D; xx
+reward &#x3D; 0
+done &#x3D; False        
 for i in range(nb_episodes):
-    ob = env.reset()
-    sum_reward = 0
+    ob &#x3D; env.reset()
+    sum_reward &#x3D; 0
     for j in range(nb_steps):
-        action = agent.act(ob, reward, done)
-        ob, reward, done, _ = env.step(action)
-        sum_reward += reward
+        action &#x3D; agent.act(ob, reward, done)
+        ob, reward, done, _ &#x3D; env.step(action)
+        sum_reward +&#x3D; reward
         if done:
             break
-</code></pre><h1 id="添加自己写的环境到gym，方便调用"><a href="#添加自己写的环境到gym，方便调用" class="headerlink" title="添加自己写的环境到gym，方便调用"></a>添加自己写的环境到gym，方便调用</h1><h2 id="设置过程"><a href="#设置过程" class="headerlink" title="设置过程"></a>设置过程</h2><ol>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="添加自己写的环境到gym，方便调用"><a href="#添加自己写的环境到gym，方便调用" class="headerlink" title="添加自己写的环境到gym，方便调用"></a>添加自己写的环境到gym，方便调用</h1><h2 id="设置过程"><a href="#设置过程" class="headerlink" title="设置过程"></a>设置过程</h2><ol>
 <li>打开gym.envs目录：<code>/usr/local/lib/python3.7/site-packages/gym/envs</code></li>
 <li>将自己编写的myenv.py拷贝至一个<code>custom</code>目录</li>
 <li><code>envs/custom</code>下<code>__init__.py</code>添加<br><code>from gym.envs.custom.myenv import MyEnv</code><br>，将子文件夹的<code>.py</code>import到上层目录</li>
 <li>env下<code>__init__.py</code>添加</li>
 </ol>
-<pre><code class="lang-python">register(
-id=&#39;myenv-v0&#39;,
-entry_point=&#39;gym.envs.custom:MyEnv,
-max_episode_steps=999,      #限制了最大终止仿真步数
-)
-</code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">register<span class="token punctuation">(</span>
+<span class="token builtin">id</span><span class="token operator">=</span><span class="token string">'myenv-v0'</span><span class="token punctuation">,</span>
+entry_point<span class="token operator">=</span>'gym<span class="token punctuation">.</span>envs<span class="token punctuation">.</span>custom<span class="token punctuation">:</span>MyEnv<span class="token punctuation">,</span>
+max_episode_steps<span class="token operator">=</span><span class="token number">999</span><span class="token punctuation">,</span>      <span class="token comment">#限制了最大终止仿真步数</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>授权<code>gym</code>的方法可以调用<code>myenv.py</code>中的<code>MyEnv</code>class</p>
 <ul>
 <li>注意：<ul>
@@ -627,13 +597,12 @@ max_episode_steps=999,      #限制了最大终止仿真步数
 </ul>
 </li>
 </ul>
-<h2 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h2><pre><code class="lang-python">env_name = &#39;myenv-v0&#39;
-env = gym.make(&#39;env_name&#39;)
-env.reset()     # 初始化环境
-env.render()    # 绘制环境，if necessary
-env.step()      # 单步仿真
-env.close()     # 关闭环境，一般涉及图像绘制的任务，此步为必须
-</code></pre>
+<h2 id="调用方法"><a href="#调用方法" class="headerlink" title="调用方法"></a>调用方法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">env_name <span class="token operator">=</span> <span class="token string">'myenv-v0'</span>
+env <span class="token operator">=</span> gym<span class="token punctuation">.</span>make<span class="token punctuation">(</span><span class="token string">'env_name'</span><span class="token punctuation">)</span>
+env<span class="token punctuation">.</span>reset<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># 初始化环境</span>
+env<span class="token punctuation">.</span>render<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment"># 绘制环境，if necessary</span>
+env<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment"># 单步仿真</span>
+env<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># 关闭环境，一般涉及图像绘制的任务，此步为必须</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/img/contact.jpg" alt=""></p>
 
                 
@@ -1422,16 +1391,16 @@ env.close()     # 关闭环境，一般涉及图像绘制的任务，此步为�
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1462,7 +1431,7 @@ env.close()     # 关闭环境，一般涉及图像绘制的任务，此步为�
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

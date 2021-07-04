@@ -380,12 +380,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/matlab/">
-                                <span class="chip bg-color">matlab</span>
-                            </a>
-                        
                             <a href="/tags/snippets/">
                                 <span class="chip bg-color">snippets</span>
+                            </a>
+                        
+                            <a href="/tags/matlab/">
+                                <span class="chip bg-color">matlab</span>
                             </a>
                         
                     </div>
@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    317
+                    336
                 </div>
                 
 
@@ -445,6 +445,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
+        
 
         
         <!-- 代码块折行 -->
@@ -458,36 +461,36 @@
                 <h2 id="代码片段snippets"><a href="#代码片段snippets" class="headerlink" title="代码片段snippets"></a>代码片段snippets</h2><ul>
 <li>保存pdf调整a4纸至合适大小</li>
 </ul>
-<pre><code>h = figure;
+<pre class="line-numbers language-none"><code class="language-none">h &#x3D; figure;
 plot(1:10);
 set(h,&#39;Units&#39;,&#39;Inches&#39;);
-pos = get(h,&#39;Position&#39;);
+pos &#x3D; get(h,&#39;Position&#39;);
 set(h,&#39;PaperPositionMode&#39;,&#39;Auto&#39;,&#39;PaperUnits&#39;,&#39;Inches&#39;,&#39;PaperSize&#39;,[pos(3), pos(4)])
-print(h,&#39;filename&#39;,&#39;-dpdf&#39;,&#39;-r0&#39;)
-</code></pre><ul>
+print(h,&#39;filename&#39;,&#39;-dpdf&#39;,&#39;-r0&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li>缺省参数默认值设定</li>
 </ul>
-<pre><code>function f(arg1, arg2, arg3)
+<pre class="line-numbers language-none"><code class="language-none">function f(arg1, arg2, arg3)
 if ~exist(&#39;arg2&#39;, &#39;var&#39;)
-    arg2 = arg2Default;
-end
-</code></pre><ul>
+    arg2 &#x3D; arg2Default;
+end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ckzhb/article/details/81105384">plot-legend多行设置</a></li>
 </ul>
-<pre><code>lgd1 = legend(&#39;第一条&#39;);
+<pre class="line-numbers language-none"><code class="language-none">lgd1 &#x3D; legend(&#39;第一条&#39;);
 set(lgd1,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;box&#39;,&#39;off&#39;,&#39;Fontname&#39;,&#39;times new roman&#39;);  
 %注：将legend放在图外面时，Legend 1不能通过鼠标移动，只能通过代码调整位置 
-% ============= Legend 2 :
-ax2 = axes(&#39;position&#39;,get(gca,&#39;position&#39;),&#39;visible&#39;,&#39;off&#39;);
-lgd2 = legend(ax2, [p2 p3], &#39;第二条&#39;, &#39;第三条&#39;);
-set(lgd2,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;Orientation&#39;,&#39;horizontal&#39;,&#39;box&#39;,&#39;off&#39;,&#39;Fontname&#39;,&#39;times new roman&#39;);
-</code></pre><p>Another way:<br><code>legend(&#123;&#39;cos(x)&#39;,&#39;cos(2x)&#39;,&#39;cos(3x)&#39;,&#39;cos(4x)&#39;&#125;,&#39;Location&#39;,&#39;northwest&#39;,&#39;NumColumns&#39;,2)</code></p>
+% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Legend 2 :
+ax2 &#x3D; axes(&#39;position&#39;,get(gca,&#39;position&#39;),&#39;visible&#39;,&#39;off&#39;);
+lgd2 &#x3D; legend(ax2, [p2 p3], &#39;第二条&#39;, &#39;第三条&#39;);
+set(lgd2,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;Orientation&#39;,&#39;horizontal&#39;,&#39;box&#39;,&#39;off&#39;,&#39;Fontname&#39;,&#39;times new roman&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Another way:<br><code>legend(&#123;&#39;cos(x)&#39;,&#39;cos(2x)&#39;,&#39;cos(3x)&#39;,&#39;cos(4x)&#39;&#125;,&#39;Location&#39;,&#39;northwest&#39;,&#39;NumColumns&#39;,2)</code></p>
 <ul>
 <li>mac打开时闪退<br><code>/Applications/Polyspace/R2019b.app/bin/matlab -nosplash</code></li>
 <li>matlab-mex命令 10.15.4问题<br><code>https://www.mathworks.com/matlabcentral/answers/512901-mex-xcodebuild-error-sdk-macosx10-15-4-cannot-be-located/?s_tid=mlc_lp_leaf</code></li>
 </ul>
-<h2 id="绘制等高线"><a href="#绘制等高线" class="headerlink" title="绘制等高线"></a>绘制等高线</h2><pre><code>contour(u, v, z, [-0.5, -0.5], &#39;LineWidth&#39;, 2)
-</code></pre><p>区间是zlim</p>
+<h2 id="绘制等高线"><a href="#绘制等高线" class="headerlink" title="绘制等高线"></a>绘制等高线</h2><pre class="line-numbers language-none"><code class="language-none">contour(u, v, z, [-0.5, -0.5], &#39;LineWidth&#39;, 2)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>区间是zlim</p>
 <p><img src="/img/contact.jpg" alt=""></p>
 
                 
@@ -553,12 +556,12 @@ set(lgd2,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;O
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/matlab/">
-                                    <span class="chip bg-color">matlab</span>
-                                </a>
-                            
                                 <a href="/tags/snippets/">
                                     <span class="chip bg-color">snippets</span>
+                                </a>
+                            
+                                <a href="/tags/matlab/">
+                                    <span class="chip bg-color">matlab</span>
                                 </a>
                             
                         </div>
@@ -1085,12 +1088,12 @@ set(lgd2,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;O
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/snippets/">
-                        <span class="chip bg-color">snippets</span>
-                    </a>
-                    
                     <a href="/tags/python/">
                         <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/snippets/">
+                        <span class="chip bg-color">snippets</span>
                     </a>
                     
                 </div>
@@ -1276,16 +1279,16 @@ set(lgd2,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;O
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1316,7 +1319,7 @@ set(lgd2,&#39;FontSize&#39;,12,&#39;Location&#39;, &#39;SouthOutside&#39;,&#39;O
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

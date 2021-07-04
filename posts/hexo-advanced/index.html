@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    425
+                    437
                 </div>
                 
 
@@ -445,6 +445,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
+        
 
         
         <!-- 代码块折行 -->
@@ -462,21 +465,18 @@
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ul>
 <li>更换默认的Hexo下 Markdown渲染引擎<br>marked -&gt; kramed</li>
 </ul>
-<pre><code class="lang-dash">npm uninstall hexo-renderer-marked --save
-npm install hexo-renderer-kramed --save
-</code></pre>
+<pre class="line-numbers language-dash" data-language="dash"><code class="language-dash">npm uninstall hexo-renderer-marked --save
+npm install hexo-renderer-kramed --save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li><p>更改hexo转义冲突<br>找到根目录<code>node_modules\kramed\lib\rules\inline.js</code></p>
 <ul>
 <li><p>修改11行，取消对<code>\,&#123;,&#125;</code>的转义escape</p>
-<pre><code class="lang-dash">//  escape: /^\\([\\`*&amp;#123;&amp;#125;\[\]()#$+\-.!_&gt;])/,
-escape: /^\\([`*\[\]()#$+\-.!_&gt;])/,
-</code></pre>
+<pre class="line-numbers language-dash" data-language="dash"><code class="language-dash">&#x2F;&#x2F;  escape: &#x2F;^\\([\\&#96;*&#123;&#125;\[\]()#$+\-.!_&gt;])&#x2F;,
+escape: &#x2F;^\\([&#96;*\[\]()#$+\-.!_&gt;])&#x2F;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 <li><p>修改20行em</p>
-<pre><code class="lang-dash">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
-em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
-</code></pre>
+<pre class="line-numbers language-dash" data-language="dash"><code class="language-dash">&#x2F;&#x2F;  em: &#x2F;^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,
+em: &#x2F;^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 </ul>
 </li>
@@ -486,13 +486,12 @@ em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
 </li>
 <li>文章也要开启<code>mathjax</code></li>
 </ul>
-<pre><code class="lang-yml">---
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---
 title: 我是标题
 date: 2020-08-15 23:18:50
 tags:
 mathjax: true
---
-</code></pre>
+--<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="其他解决办法"><a href="#其他解决办法" class="headerlink" title="其他解决办法"></a>其他解决办法</h2><ul>
 <li>服务器端的渲染<ul>
 <li><a target="_blank" rel="noopener" href="https://math.now.sh/home">math.now.sh</a></li>
@@ -1293,16 +1292,16 @@ mathjax: true
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1333,7 +1332,7 @@ mathjax: true
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

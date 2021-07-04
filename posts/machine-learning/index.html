@@ -445,6 +445,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
+        
 
         
         <!-- 代码块折行 -->
@@ -504,11 +507,11 @@
 <li>不需要选择学习速率$\alpha$</li>
 <li>收敛速度快<br>缺点：复杂<br>可以直接调用</li>
 </ul>
-<pre><code>1.设置优化参数 optimset = 初始参数，方法，强制结束迭代次数
-2.设置初始条件，Initialpara = 
-3.[Jval, theta&#39;] = Cost_function (X,Y)
-4.调用优化函数[Jval，theta&#39;] = (@Cost_function,Initialpara,optimset)，
-</code></pre><h2 id="多类别分类"><a href="#多类别分类" class="headerlink" title="多类别分类"></a>多类别分类</h2><p>构建i个分类器，利用i个h(z)，处理<br>分别给出属于某个分类的几率值</p>
+<pre class="line-numbers language-none"><code class="language-none">1.设置优化参数 optimset &#x3D; 初始参数，方法，强制结束迭代次数
+2.设置初始条件，Initialpara &#x3D; 
+3.[Jval, theta&#39;] &#x3D; Cost_function (X,Y)
+4.调用优化函数[Jval，theta&#39;] &#x3D; (@Cost_function,Initialpara,optimset)，<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="多类别分类"><a href="#多类别分类" class="headerlink" title="多类别分类"></a>多类别分类</h2><p>构建i个分类器，利用i个h(z)，处理<br>分别给出属于某个分类的几率值</p>
 <p>X 特征矩阵</p>
 <h2 id="3-2回归遇到的问题，解决方案，正则化"><a href="#3-2回归遇到的问题，解决方案，正则化" class="headerlink" title="3.2回归遇到的问题，解决方案，正则化"></a>3.2回归遇到的问题，解决方案，正则化</h2><ul>
 <li><p>过拟合<br>拟合特征数&gt;&gt;样本量，</p>
@@ -1465,16 +1468,16 @@ p(x)&amp;=p(x_1;\mu_1,\sigma_1^2)p(x_2;\mu_2,\sigma_2^2) \cdots p(x_n;\mu_n,\sig
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1505,7 +1508,7 @@ p(x)&amp;=p(x_1;\mu_1,\sigma_1^2)p(x_2;\mu_2,\sigma_2^2) \cdots p(x_n;\mu_n,\sig
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

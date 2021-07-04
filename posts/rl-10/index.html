@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.2k
                 </div>
                 
 
@@ -444,6 +444,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
         
 
         
@@ -628,10 +631,8 @@ q_*(s,a) = v_*(succ(s,a))</script><p>同样采用最小最大优化</p>
 <ul>
 <li>搜索值 由当前和 下一个状态计算得到</li>
 </ul>
-<p>这个公式无法显示</p>
-<pre><code>v_&amp;#123;+&amp;#125;\left(S_&amp;#123;t&amp;#125;, \mathbf&amp;#123;w&amp;#125;\right)=\underset&amp;#123;&amp;#123;s \in \text &amp;#123; leaves &amp;#125;\left(S_&amp;#123;t&amp;#125;\right)&amp;#125;&amp;#125;&amp;#123;\rm&amp;#123;minimax&amp;#125;&amp;#125; v(s, \mathbf&amp;#123;w&amp;#125;)\\
-v_&amp;#123;+&amp;#125;\left(S_&amp;#123;t+1&amp;#125;, \mathbf&amp;#123;w&amp;#125;\right)=\underset&amp;#123;&amp;#123;s \in \text &amp;#123; leaves &amp;#125;\left(S_&amp;#123;t+1&amp;#125;\right)&amp;#125;&amp;#125;&amp;#123;\rm&amp;#123;minimax&amp;#125;&amp;#125; v(s, \mathbf&amp;#123;w&amp;#125;)
-</code></pre><p><img src="/img/MommyTalk1599040691831.jpg" alt="MommyTalk1599040691831"></p>
+<p>这个公式无法显示<br><pre class="line-numbers language-none"><code class="language-none">v_&#123;+&#125;\left(S_&#123;t&#125;, \mathbf&#123;w&#125;\right)&#x3D;\underset&#123;&#123;s \in \text &#123; leaves &#125;\left(S_&#123;t&#125;\right)&#125;&#125;&#123;\rm&#123;minimax&#125;&#125; v(s, \mathbf&#123;w&#125;)\\
+v_&#123;+&#125;\left(S_&#123;t+1&#125;, \mathbf&#123;w&#125;\right)&#x3D;\underset&#123;&#123;s \in \text &#123; leaves &#125;\left(S_&#123;t+1&#125;\right)&#125;&#125;&#123;\rm&#123;minimax&#125;&#125; v(s, \mathbf&#123;w&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><br><img src="/img/MommyTalk1599040691831.jpg" alt="MommyTalk1599040691831"></p>
 <ul>
 <li>t时刻的搜索值 由 t+1时刻的搜索值备份得到<script type="math/tex; mode=display">
 \begin{aligned}
@@ -1540,16 +1541,16 @@ v\left(s, \mathbf{w}\right) & \leftarrow v_{+}\left(s, \mathbf{w}\right) \\
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1580,7 +1581,7 @@ v\left(s, \mathbf{w}\right) & \leftarrow v_{+}\left(s, \mathbf{w}\right) \\
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

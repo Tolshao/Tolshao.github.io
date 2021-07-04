@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    610
+                    536
                 </div>
                 
 
@@ -445,6 +445,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
+        
 
         
         <!-- 代码块折行 -->
@@ -456,54 +459,48 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="Texpad实时编译注意"><a href="#Texpad实时编译注意" class="headerlink" title="Texpad实时编译注意"></a>Texpad实时编译注意</h1><p>Texpad live 支持实时编译<br>缺点：不支持高级packages，如cref</p>
-<p>经过验证，下列包不支持实时编译</p>
-<pre><code>\crefname&amp;#123;figure&amp;#125;&amp;#123;Fig.&amp;#125;&amp;#123;Figs.&amp;#125;
-\crefname&amp;#123;table&amp;#125;&amp;#123;Table.&amp;#125;&amp;#123;Tables.&amp;#125;
-\crefname&amp;#123;appendix&amp;#125;&amp;#123;&amp;#125;&amp;#123;&amp;#125;
-\crefname&amp;#123;equation&amp;#125;&amp;#123;&amp;#125;&amp;#123;&amp;#125;
-</code></pre><p>所以最后文档定型之后，调整格式的时候再添加</p>
+<p>经过验证，下列包不支持实时编译<br><pre class="line-numbers language-none"><code class="language-none">\crefname&#123;figure&#125;&#123;Fig.&#125;&#123;Figs.&#125;
+\crefname&#123;table&#125;&#123;Table.&#125;&#123;Tables.&#125;
+\crefname&#123;appendix&#125;&#123;&#125;&#123;&#125;
+\crefname&#123;equation&#125;&#123;&#125;&#123;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><br>所以最后文档定型之后，调整格式的时候再添加</p>
 <h2 id="强制使用自定义图例标签，ref"><a href="#强制使用自定义图例标签，ref" class="headerlink" title="强制使用自定义图例标签，ref"></a>强制使用自定义图例标签，ref</h2><p>\renewcommand{\Figurename}{Fig.}</p>
 <h2 id="投稿latex模板自定义修改"><a href="#投稿latex模板自定义修改" class="headerlink" title="投稿latex模板自定义修改"></a>投稿latex模板自定义修改</h2><p>一般要求单列，双倍间距（可以在cls文件里面调）</p>
 <h2 id="实时预览中文"><a href="#实时预览中文" class="headerlink" title="实时预览中文"></a>实时预览中文</h2><p>使用包CJK</p>
-<pre><code class="lang-latex">\documentclass&amp;#123;article&amp;#125;
-\usepackage&amp;#123;CJKutf8&amp;#125;
-\begin&amp;#123;document&amp;#125;
-\begin&amp;#123;CJK&amp;#125;&amp;#123;UTF8&amp;#125;&amp;#123;gbsn&amp;#125;
+<pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\documentclass</span><span class="token punctuation">&#123;</span><span class="token keyword">article</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">&#123;</span><span class="token keyword">CJKutf8</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">document</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">CJK</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>UTF8<span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span>gbsn<span class="token punctuation">&#125;</span>
 这是一个CJK例子,使用了UTF-8编码和gbsn字体。
-\end&amp;#123;CJK&amp;#125;
-\end&amp;#123;document&amp;#125;
-</code></pre>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">CJK</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">document</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>另外两种方法</p>
 <ul>
 <li><code>ctex</code></li>
 </ul>
-<pre><code class="lang-latex">\documentclass[UTF8]&amp;#123;ctexart&amp;#125;
-\begin&amp;#123;document&amp;#125;
-这是一个CTEX的utf-8编码例子，&amp;#123;\kaishu 这里是楷体显示&amp;#125;，&amp;#123;\songti 这里是宋体显示&amp;#125;，&amp;#123;\heiti 这里是黑体显示&amp;#125;，&amp;#123;\fangsong 这里是仿宋显示&amp;#125;。
-\end&amp;#123;document&amp;#125;
-</code></pre>
+<pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\documentclass</span><span class="token punctuation">[</span>UTF8<span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token keyword">ctexart</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">document</span><span class="token punctuation">&#125;</span>
+这是一个CTEX的utf-8编码例子，<span class="token punctuation">&#123;</span><span class="token function selector">\kaishu</span> 这里是楷体显示<span class="token punctuation">&#125;</span>，<span class="token punctuation">&#123;</span><span class="token function selector">\songti</span> 这里是宋体显示<span class="token punctuation">&#125;</span>，<span class="token punctuation">&#123;</span><span class="token function selector">\heiti</span> 这里是黑体显示<span class="token punctuation">&#125;</span>，<span class="token punctuation">&#123;</span><span class="token function selector">\fangsong</span> 这里是仿宋显示<span class="token punctuation">&#125;</span>。
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">document</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><code>xeCJK</code>只支持<code>xelatex</code>包，不能实时预览</li>
 </ul>
-<pre><code class="lang-latex">\documentclass&amp;#123;article&amp;#125;
-\usepackage&amp;#123;xeCJK&amp;#125;
-\setCJKmainfont&amp;#123;SimSun&amp;#125;
-\begin&amp;#123;document&amp;#125;
-中文 \LaTeX 示例。
-\end&amp;#123;document&amp;#125;
-</code></pre>
+<pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\documentclass</span><span class="token punctuation">&#123;</span><span class="token keyword">article</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">&#123;</span><span class="token keyword">xeCJK</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\setCJKmainfont</span><span class="token punctuation">&#123;</span>SimSun<span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">document</span><span class="token punctuation">&#125;</span>
+中文 <span class="token function selector">\LaTeX</span> 示例。
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">document</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="长公式跨双栏显示"><a href="#长公式跨双栏显示" class="headerlink" title="长公式跨双栏显示"></a>长公式跨双栏显示</h2><ul>
 <li>使用<code>cuted</code>包的<code>strip</code>环境</li>
 <li>更改strip默认行距，<code>\stripsep -3pt plus 3pt minus 2pt</code></li>
 </ul>
-<pre><code class="lang-latex">\begin&amp;#123;strip&amp;#125;
-\begin&amp;#123;equation&amp;#125;
-\label&amp;#123;haha&amp;#125;
-a&amp;=b+c=b+c=b+c=b+c=b+c=b+c\\
+<pre class="line-numbers language-latex" data-language="latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">strip</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\begin</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span><span class="token equation string">
+<span class="token equation-command regex">\label</span>&#123;haha&#125;
+a&amp;=b+c=b+c=b+c=b+c=b+c=b+c<span class="token equation-command regex">\\</span>
 &amp;=b+c=b+c=b+c=b+c=b+c=b+c
-\end&amp;#123;equation&amp;#125;
-\end&amp;#123;strip&amp;#125;
-</code></pre>
+</span><span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">equation</span><span class="token punctuation">&#125;</span>
+<span class="token function selector">\end</span><span class="token punctuation">&#123;</span><span class="token keyword">strip</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="Word公式转换"><a href="#Word公式转换" class="headerlink" title="Word公式转换"></a>Word公式转换</h1><p>mathtype支持latex公式和mathml公式的转换<br>Win10有BUG，默认报错找不到<code>.xml</code>文件<br>需要用管理员打开word，才能mathtype不报错</p>
 <h1 id="latex公式编辑器"><a href="#latex公式编辑器" class="headerlink" title="latex公式编辑器"></a>latex公式编辑器</h1><p><a target="_blank" rel="noopener" href="https://www.latexlive.com/##">latex公式编辑器</a></p>
 <h1 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h1><ul>
@@ -1123,12 +1120,12 @@ a&amp;=b+c=b+c=b+c=b+c=b+c=b+c\\
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/matlab/">
-                        <span class="chip bg-color">matlab</span>
-                    </a>
-                    
                     <a href="/tags/snippets/">
                         <span class="chip bg-color">snippets</span>
+                    </a>
+                    
+                    <a href="/tags/matlab/">
+                        <span class="chip bg-color">matlab</span>
                     </a>
                     
                 </div>
@@ -1314,16 +1311,16 @@ a&amp;=b+c=b+c=b+c=b+c=b+c=b+c\\
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1354,7 +1351,7 @@ a&amp;=b+c=b+c=b+c=b+c=b+c=b+c\\
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

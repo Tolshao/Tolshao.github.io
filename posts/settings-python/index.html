@@ -380,12 +380,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/snippets/">
-                                <span class="chip bg-color">snippets</span>
-                            </a>
-                        
                             <a href="/tags/python/">
                                 <span class="chip bg-color">python</span>
+                            </a>
+                        
+                            <a href="/tags/snippets/">
+                                <span class="chip bg-color">snippets</span>
                             </a>
                         
                     </div>
@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    336
+                    278
                 </div>
                 
 
@@ -445,6 +445,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
+        
 
         
         <!-- 代码块折行 -->
@@ -458,64 +461,61 @@
                 <h2 id="python读取txt数据plot"><a href="#python读取txt数据plot" class="headerlink" title="python读取txt数据plot"></a>python读取txt数据plot</h2><ul>
 <li>从txt获取数据</li>
 </ul>
-<pre><code class="lang-python">def get_txt_result(filename, sp=-1, ep=-1, debug=False):
-    fileReadObj = open(filename)
-    # 再读入后续的文件
-    fileLines = fileReadObj.readlines()  # 一次性读入所有的行
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_txt_result</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> sp<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> ep<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> debug<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fileReadObj <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">)</span>
+    <span class="token comment"># 再读入后续的文件</span>
+    fileLines <span class="token operator">=</span> fileReadObj<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 一次性读入所有的行</span>
 
-    if sp &gt;= 0 and ep &gt; sp:
-        fileLines = fileLines[sp:ep]
+    <span class="token keyword">if</span> sp <span class="token operator">>=</span> <span class="token number">0</span> <span class="token keyword">and</span> ep <span class="token operator">></span> sp<span class="token punctuation">:</span>
+        fileLines <span class="token operator">=</span> fileLines<span class="token punctuation">[</span>sp<span class="token punctuation">:</span>ep<span class="token punctuation">]</span>
 
-    mylist = fileLines[0].split(&quot;\t&quot;)  # 用&quot;&quot;将字符分开
-    # print(mylist)
-    linecount = len(fileLines)
-    colcount = len(mylist)
-    data = np.zeros((linecount, colcount))
-    j = 0
-    for line in fileLines:
-        line = line.strip()  # 去掉字符串头尾的空格
-        mylist = line.split(&quot;\t&quot;)  # 用&quot;&quot;将字符分开
-        i = 0
-        for x in mylist:
-            data[j][i] = float(x)
-            i = i + 1
-        j = j + 1
-    N = j
+    mylist <span class="token operator">=</span> fileLines<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">)</span>  <span class="token comment"># 用""将字符分开</span>
+    <span class="token comment"># print(mylist)</span>
+    linecount <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>fileLines<span class="token punctuation">)</span>
+    colcount <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>mylist<span class="token punctuation">)</span>
+    data <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>linecount<span class="token punctuation">,</span> colcount<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    j <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> line <span class="token keyword">in</span> fileLines<span class="token punctuation">:</span>
+        line <span class="token operator">=</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 去掉字符串头尾的空格</span>
+        mylist <span class="token operator">=</span> line<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">)</span>  <span class="token comment"># 用""将字符分开</span>
+        i <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> x <span class="token keyword">in</span> mylist<span class="token punctuation">:</span>
+            data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">float</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+            i <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span>
+        j <span class="token operator">=</span> j <span class="token operator">+</span> <span class="token number">1</span>
+    N <span class="token operator">=</span> j
 
-    dT = 0.0001
+    dT <span class="token operator">=</span> <span class="token number">0.0001</span>
 
-    time = np.linspace(start=0, stop=N * dT, num=N)
-    return time, data
-</code></pre>
-<h2 id="python保存data到excel"><a href="#python保存data到excel" class="headerlink" title="python保存data到excel"></a>python保存data到excel</h2><pre><code class="lang-python">import numpy as np
-import pandas as pd
-# prepare for data
-data = np.arange(1,101).reshape((10,10))
-data_df = pd.DataFrame(data)
-# change the index and column name
-data_df.columns = [&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;,&#39;E&#39;,&#39;F&#39;,&#39;G&#39;,&#39;H&#39;,&#39;I&#39;,&#39;J&#39;]
-data_df.index = [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;,&#39;f&#39;,&#39;g&#39;,&#39;h&#39;,&#39;i&#39;,&#39;j&#39;]
-# create and writer pd.DataFrame to excel
-writer = pd.ExcelWriter(&#39;Save_Excel.xlsx&#39;)
-data_df.to_excel(writer,&#39;page_1&#39;,float_format=&#39;%.5f&#39;) # float_format 控制精度
-writer.save()
-</code></pre>
+    time <span class="token operator">=</span> np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span>start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> stop<span class="token operator">=</span>N <span class="token operator">*</span> dT<span class="token punctuation">,</span> num<span class="token operator">=</span>N<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> time<span class="token punctuation">,</span> data<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="python保存data到excel"><a href="#python保存data到excel" class="headerlink" title="python保存data到excel"></a>python保存data到excel</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token comment"># prepare for data</span>
+data <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+data_df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+<span class="token comment"># change the index and column name</span>
+data_df<span class="token punctuation">.</span>columns <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span><span class="token string">'B'</span><span class="token punctuation">,</span><span class="token string">'C'</span><span class="token punctuation">,</span><span class="token string">'D'</span><span class="token punctuation">,</span><span class="token string">'E'</span><span class="token punctuation">,</span><span class="token string">'F'</span><span class="token punctuation">,</span><span class="token string">'G'</span><span class="token punctuation">,</span><span class="token string">'H'</span><span class="token punctuation">,</span><span class="token string">'I'</span><span class="token punctuation">,</span><span class="token string">'J'</span><span class="token punctuation">]</span>
+data_df<span class="token punctuation">.</span>index <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">,</span><span class="token string">'d'</span><span class="token punctuation">,</span><span class="token string">'e'</span><span class="token punctuation">,</span><span class="token string">'f'</span><span class="token punctuation">,</span><span class="token string">'g'</span><span class="token punctuation">,</span><span class="token string">'h'</span><span class="token punctuation">,</span><span class="token string">'i'</span><span class="token punctuation">,</span><span class="token string">'j'</span><span class="token punctuation">]</span>
+<span class="token comment"># create and writer pd.DataFrame to excel</span>
+writer <span class="token operator">=</span> pd<span class="token punctuation">.</span>ExcelWriter<span class="token punctuation">(</span><span class="token string">'Save_Excel.xlsx'</span><span class="token punctuation">)</span>
+data_df<span class="token punctuation">.</span>to_excel<span class="token punctuation">(</span>writer<span class="token punctuation">,</span><span class="token string">'page_1'</span><span class="token punctuation">,</span>float_format<span class="token operator">=</span><span class="token string">'%.5f'</span><span class="token punctuation">)</span> <span class="token comment"># float_format 控制精度</span>
+writer<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="python-Science-风格画图"><a href="#python-Science-风格画图" class="headerlink" title="python Science 风格画图"></a>python Science 风格画图</h2><ul>
 <li><p>安装<code>pip install SciencePlots</code></p>
 </li>
 <li><p>使用</p>
 </li>
 </ul>
-<pre><code class="lang-python">import matplotlib.pyplot as plt
-import numpy as np
-plt.style.use(&#39;science&#39;)
-x = np.linspace(00,10,50)
-y = np.sin(x)
-y2 = np.cos(x)
-plt.plot(x,y)
-plt.plot(x,y2)
-plt.show()
-</code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+plt<span class="token punctuation">.</span>style<span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">'science'</span><span class="token punctuation">)</span>
+x <span class="token operator">=</span> np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token number">00</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span>
+y <span class="token operator">=</span> np<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+y2 <span class="token operator">=</span> np<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">,</span>y2<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="matplotlib-help文档"><a href="#matplotlib-help文档" class="headerlink" title="matplotlib help文档"></a>matplotlib help文档</h2><p><a target="_blank" rel="noopener" href="https://matplotlib.org/gallery.html">地址</a></p>
 <p><img src="/img/contact.jpg" alt=""></p>
 
@@ -582,12 +582,12 @@ plt.show()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/snippets/">
-                                    <span class="chip bg-color">snippets</span>
-                                </a>
-                            
                                 <a href="/tags/python/">
                                     <span class="chip bg-color">python</span>
+                                </a>
+                            
+                                <a href="/tags/snippets/">
+                                    <span class="chip bg-color">snippets</span>
                                 </a>
                             
                         </div>
@@ -1062,12 +1062,12 @@ plt.show()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/matlab/">
-                        <span class="chip bg-color">matlab</span>
-                    </a>
-                    
                     <a href="/tags/snippets/">
                         <span class="chip bg-color">snippets</span>
+                    </a>
+                    
+                    <a href="/tags/matlab/">
+                        <span class="chip bg-color">matlab</span>
                     </a>
                     
                 </div>
@@ -1115,12 +1115,12 @@ plt.show()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/snippets/">
-                        <span class="chip bg-color">snippets</span>
-                    </a>
-                    
                     <a href="/tags/python/">
                         <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/snippets/">
+                        <span class="chip bg-color">snippets</span>
                     </a>
                     
                 </div>
@@ -1306,16 +1306,16 @@ plt.show()
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1346,7 +1346,7 @@ plt.show()
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

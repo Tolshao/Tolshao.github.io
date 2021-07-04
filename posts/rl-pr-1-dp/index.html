@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    946
+                    904
                 </div>
                 
 
@@ -444,6 +444,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
         
 
         
@@ -480,96 +483,93 @@
 </ul>
 </li>
 </ul>
-<pre><code class="lang-python"># 状态集合
-states = [i for i in range(16)]
-# 价值集合
-values = [0 for _ in range(16)]
-# 动作集：
-actions = [&quot;n&quot;, &quot;e&quot;, &quot;s&quot;, &quot;w&quot;]
-# 动作字典：
-ds_actions = &amp;#123;&quot;n&quot;: -4, &quot;e&quot;: 1, &quot;s&quot;: 4, &quot;w&quot;: -1&amp;#125;
-# 衰减率
-gamma = 1.00
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 状态集合</span>
+states <span class="token operator">=</span> <span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token comment"># 价值集合</span>
+values <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+<span class="token comment"># 动作集：</span>
+actions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"n"</span><span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">,</span> <span class="token string">"s"</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">]</span>
+<span class="token comment"># 动作字典：</span>
+ds_actions <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"n"</span><span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"e"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"s"</span><span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">&#125;</span>
+<span class="token comment"># 衰减率</span>
+gamma <span class="token operator">=</span> <span class="token number">1.00</span>
 
 
-# 定义MDP
-def nextState(s, a):
-    next_state = s
-    if (s%4 == 0 and a == &quot;w&quot;) or (s&lt;4 and a == &quot;n&quot;) or \
-      ((s+1)%4 == 0 and a == &quot;e&quot;) or (s &gt; 11 and a == &quot;s&quot;):
-        pass
-    else:
-        ds = ds_actions[a]
-        next_state = s + ds
-    return next_state
+<span class="token comment"># 定义MDP</span>
+<span class="token keyword">def</span> <span class="token function">nextState</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    next_state <span class="token operator">=</span> s
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token operator">%</span><span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">and</span> a <span class="token operator">==</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span>s<span class="token operator">&lt;</span><span class="token number">4</span> <span class="token keyword">and</span> a <span class="token operator">==</span> <span class="token string">"n"</span><span class="token punctuation">)</span> <span class="token keyword">or</span> \
+      <span class="token punctuation">(</span><span class="token punctuation">(</span>s<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">and</span> a <span class="token operator">==</span> <span class="token string">"e"</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token punctuation">(</span>s <span class="token operator">></span> <span class="token number">11</span> <span class="token keyword">and</span> a <span class="token operator">==</span> <span class="token string">"s"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        ds <span class="token operator">=</span> ds_actions<span class="token punctuation">[</span>a<span class="token punctuation">]</span>
+        next_state <span class="token operator">=</span> s <span class="token operator">+</span> ds
+    <span class="token keyword">return</span> next_state
 
 
-# 定义奖励
-def rewardOf(s):
-    return 0 if s in [0, 15] else -1
+<span class="token comment"># 定义奖励</span>
+<span class="token keyword">def</span> <span class="token function">rewardOf</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token number">0</span> <span class="token keyword">if</span> s <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span> <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span>
 
 
-# 判断是否结束
-def isTerminateState(s):
-    return s in [0, 15]
+<span class="token comment"># 判断是否结束</span>
+<span class="token keyword">def</span> <span class="token function">isTerminateState</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> s <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">]</span>
 
 
-# 获取所有可能的next state 集合
-def getSuccessors(s):
-    successors = []
-    if isTerminateState(s):
-        return successors
-    for a in actions:
-        next_state = nextState(s, a)
-        # if s != next_state:
-        successors.append(next_state)
-    return successors
+<span class="token comment"># 获取所有可能的next state 集合</span>
+<span class="token keyword">def</span> <span class="token function">getSuccessors</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    successors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> isTerminateState<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> successors
+    <span class="token keyword">for</span> a <span class="token keyword">in</span> actions<span class="token punctuation">:</span>
+        next_state <span class="token operator">=</span> nextState<span class="token punctuation">(</span>s<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+        <span class="token comment"># if s != next_state:</span>
+        successors<span class="token punctuation">.</span>append<span class="token punctuation">(</span>next_state<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> successors
 
 
-# 更新当前位置的价值函数
-def updateValue(s):
-    sucessors = getSuccessors(s)
-    newValue = 0  # values[s]
-    num = 4  # len(successors)
-    reward = rewardOf(s)
-    for next_state in sucessors:
-        newValue += 1.00 / num * (reward + gamma * values[next_state])
-    return newValue
+<span class="token comment"># 更新当前位置的价值函数</span>
+<span class="token keyword">def</span> <span class="token function">updateValue</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sucessors <span class="token operator">=</span> getSuccessors<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    newValue <span class="token operator">=</span> <span class="token number">0</span>  <span class="token comment"># values[s]</span>
+    num <span class="token operator">=</span> <span class="token number">4</span>  <span class="token comment"># len(successors)</span>
+    reward <span class="token operator">=</span> rewardOf<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> next_state <span class="token keyword">in</span> sucessors<span class="token punctuation">:</span>
+        newValue <span class="token operator">+=</span> <span class="token number">1.00</span> <span class="token operator">/</span> num <span class="token operator">*</span> <span class="token punctuation">(</span>reward <span class="token operator">+</span> gamma <span class="token operator">*</span> values<span class="token punctuation">[</span>next_state<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> newValue
 
 
-# 打印所有状态对应价值函数
-def printValue(v):
-    for i in range(16):
-        print(&#39;&amp;#123;0:&gt;6.2f&amp;#125;&#39;.format(v[i]), end=&quot; &quot;)
-        if (i + 1) % 4 == 0:
-            print(&quot;&quot;)
-    print()
+<span class="token comment"># 打印所有状态对应价值函数</span>
+<span class="token keyword">def</span> <span class="token function">printValue</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'&#123;0:>6.2f&#125;'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">4</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
 
-# 一次迭代
-# 这里采用的是同步更新，不是异步更新。创建了newvalues数组，遍历过states后，统一更新global values
-def performOneIteration():
-    newValues = [0 for _ in range(16)]
-    for s in states:
-        newValues[s] = updateValue(s)
-    global values
-    values = newValues
-    printValue(values)
-</code></pre>
-<pre><code class="lang-python"># 主函数
-def main():
-    max_iterate_times = 160
-    cur_iterate_times = 0
-    while cur_iterate_times &lt;= max_iterate_times:
-        print(&quot;Iterate No.&amp;#123;0&amp;#125;&quot;.format(cur_iterate_times))
-        performOneIteration()
-        cur_iterate_times += 1
-    printValue(values)
-</code></pre>
-<pre><code class="lang-python">if __name__ == &#39;__main__&#39;:
-    main()
-</code></pre>
-<h2 id="运算结果如下"><a href="#运算结果如下" class="headerlink" title="运算结果如下"></a>运算结果如下</h2><pre><code>Iterate No.0
+<span class="token comment"># 一次迭代</span>
+<span class="token comment"># 这里采用的是同步更新，不是异步更新。创建了newvalues数组，遍历过states后，统一更新global values</span>
+<span class="token keyword">def</span> <span class="token function">performOneIteration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    newValues <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> s <span class="token keyword">in</span> states<span class="token punctuation">:</span>
+        newValues<span class="token punctuation">[</span>s<span class="token punctuation">]</span> <span class="token operator">=</span> updateValue<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token keyword">global</span> values
+    values <span class="token operator">=</span> newValues
+    printValue<span class="token punctuation">(</span>values<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 主函数</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    max_iterate_times <span class="token operator">=</span> <span class="token number">160</span>
+    cur_iterate_times <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> cur_iterate_times <span class="token operator">&lt;=</span> max_iterate_times<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Iterate No.&#123;0&#125;"</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>cur_iterate_times<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        performOneIteration<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cur_iterate_times <span class="token operator">+=</span> <span class="token number">1</span>
+    printValue<span class="token punctuation">(</span>values<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="运算结果如下"><a href="#运算结果如下" class="headerlink" title="运算结果如下"></a>运算结果如下</h2><pre class="line-numbers language-none"><code class="language-none">Iterate No.0
   0.00  -1.00  -1.00  -1.00 
  -1.00  -1.00  -1.00  -1.00 
  -1.00  -1.00  -1.00  -1.00 
@@ -606,8 +606,8 @@ Iterate No.160
   0.00 -14.00 -20.00 -22.00 
 -14.00 -18.00 -20.00 -20.00 
 -20.00 -20.00 -18.00 -14.00 
--22.00 -20.00 -14.00   0.00
-</code></pre>
+-22.00 -20.00 -14.00   0.00 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>
@@ -1394,16 +1394,16 @@ Iterate No.160
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1434,7 +1434,7 @@ Iterate No.160
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";

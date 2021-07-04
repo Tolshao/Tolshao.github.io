@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    965
+                    969
                 </div>
                 
 
@@ -444,6 +444,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tolshao/tolshao.github.io/libs/prism/prism.css">
         
 
         
@@ -507,12 +510,12 @@
 </ul>
 <h3 id="AC算法"><a href="#AC算法" class="headerlink" title="AC算法"></a>AC算法</h3><p>图中有两个网络：actor、critic<br>actor：根据policy给出最大概率下的action<br><img src="/img/15953289716908.jpg" alt="-w744"></p>
 <p>完成离线仿真和学习之后，将policy部署到硬件<br>RL algorithm学习能力对于适应不确定干扰和缓变环境尤为重要<br><img src="/img/15953297916839.jpg" alt="-w641"></p>
-<h4 id="AC网络的执行逻辑"><a href="#AC网络的执行逻辑" class="headerlink" title="AC网络的执行逻辑"></a>AC网络的执行逻辑</h4><pre><code>while True:  a = actor.choose_action(s)
-s_,r,done,info = env.step(a)
-td_error = critic.learn(s,r,s_)
+<h4 id="AC网络的执行逻辑"><a href="#AC网络的执行逻辑" class="headerlink" title="AC网络的执行逻辑"></a>AC网络的执行逻辑</h4><pre class="line-numbers language-none"><code class="language-none">while True:  a &#x3D; actor.choose_action(s)
+s_,r,done,info &#x3D; env.step(a)
+td_error &#x3D; critic.learn(s,r,s_)
 actor.learn(s,a,td_error)
-s = s_
-</code></pre><h3 id="DDPG——deep-deterministic-policy-gradient"><a href="#DDPG——deep-deterministic-policy-gradient" class="headerlink" title="DDPG——deep deterministic policy gradient"></a>DDPG——deep deterministic policy gradient</h3><h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><ul>
+s &#x3D; s_<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="DDPG——deep-deterministic-policy-gradient"><a href="#DDPG——deep-deterministic-policy-gradient" class="headerlink" title="DDPG——deep deterministic policy gradient"></a>DDPG——deep deterministic policy gradient</h3><h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><ul>
 <li>连续空间与环境学习</li>
 <li>确定策略比随机快</li>
 </ul>
@@ -1321,16 +1324,16 @@ s = s_
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2020-2021</span>
             
-            <span id="year">2019</span>
+            <span id="year">2020</span>
             <a href="/about" target="_blank">Tolshao</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">60.7k</span>
+                        class="white-color">60.2k</span>
             
             
             
@@ -1361,7 +1364,7 @@ s = s_
                         var days = hours * 24;
                         var years = days * 365;
                         var today = new Date();
-                        var startYear = "2019";
+                        var startYear = "2020";
                         var startMonth = "6";
                         var startDate = "28";
                         var startHour = "0";
